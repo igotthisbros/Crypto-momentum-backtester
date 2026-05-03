@@ -1,14 +1,22 @@
 # Crypto-momentum-backtester
 
-This is a project about analyzing the moving average of the price of a bitcoin to find patterns in it and try to earn money out of it. I used Binance's public api to get data.
+This is a project about analyzing the moving average of Bitcoin prices to find patterns and backtest a trading strategy. I used Binance's public API to get the data.
 
-I compared between the moving average of the past 30 hour's BTC closing price and if the moving average of it was higher than the moving average of the past 10 hour's BTC closing price, I made a 'signal' to buy. Did the opposite for chossing when to sell.
+### The Strategy
+The program compares the 30-hour and 10-hour moving averages of BTC closing prices:
+* **Buy:** When the 10-hour moving average is higher than the 30-hour moving average.
+* **Sell:** When the 10-hour moving average falls below the 30-hour moving average.
 
-To run this program, simply run the main.ipynb notebook in order. You would need to install pandas,numpy, and matplotlib from pip.
+### Performance
+After testing on 1,000 hours of data, the program saw an 18.2% gain. In comparison, simply buying and holding BTC over the same period would have only returned 13.6%. 
 
-They can be done with the following commands:
-pip install pandas
-pip install numpy
-pip install matplotlib
+### Future Improvements
+I plan to add a stop-loss mechanism to protect against sudden price drops and experiment with different time intervals to see if the strategy holds up across longer periods.
 
-After applying it to 1000hours it we saw an 18.2% gain. So if I had invested 1 dollar into BTC and have this program sell and buy, it would have performed better than if I had invested and not done anything and wait. As it only rose 13.6% without intervention. 
+### Installation
+You need to install pandas, numpy, and matplotlib via pip:
+```bash
+pip install pandas numpy matplotlib
+```
+### How to use
+To run the program, simply run the main.ipynb notebook in order. It will fetch the data and calculate the returns automatically.
