@@ -18,7 +18,7 @@ async def btc_quant():
                 while(True):
                     btc_data = await websocket.recv()
                     data = json.loads(btc_data)
-
+                    print(data)
                     #The data comes in a dictionary. The data we need is in the key 'k'
                     # 'k' is another dictionary where 'x' key has the boolean data of if the price is closed or not.
                     if(data["k"]["x"]):
@@ -49,9 +49,6 @@ async def btc_quant():
                                 if(sold>0): print(f"Net profit of {sold} gained \n")
                                 else: print(f"Net loss of {sold} lost")
                                 print(f"While buy&hold performed {buynhold}")
-        
-
-                                
                                 
                                 
         except websockets.ConnectionClosed:
