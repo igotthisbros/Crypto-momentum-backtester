@@ -28,13 +28,13 @@ class MovingAverageStrategy:
             self.bought = event["close_price"]
             return self.make_signal("BUY",current_price,short_ma=short,long_ma=long)
         else:
-            buynhold = (current_price-self.start_price) / self.start_price  100
+            buynhold = (current_price-self.start_price) / self.start_price * 100
             
             if self.bought is None:
                 return self.make_signal("SELL_IGNORED",current_price,buy_and_hold_return_pct = buynhold)
             else:
                 sold = (current_price-self.bought) / self.bought *100
-                self.bought = Non
+                self.bought = None
 
             return self.make_signal("SELL",current_price,entry_price=self.bought,strategy_return_pct=sold, buy_and_hold_return_pct = buynhold)
 

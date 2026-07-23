@@ -30,4 +30,15 @@ def test_moving_strategy_buy_when_short_ma_below_long_ma():
     assert result['price'] == 100
     assert result['short_ma'] == (102+100)/2
     assert result['long_ma'] == (105+102+100)/3
-    
+
+
+def test_moving_strategy_closes_position_after_sell():
+    strategy = MovingAverageStrategy(short_window=2,long_window=3)
+
+    assert strategy.on_event(make_events(105)) is None
+    assert strategy.on_event(make_events(102)) is None
+    buy_result = strategy.on_event(make_events(100))
+    sell_result = strategy.on_event(make_events(110))
+    assert buy_result['signal'] == "BUY"
+    assert sell_result['signal'] == "SELL"
+    assert strategy.bought is None
